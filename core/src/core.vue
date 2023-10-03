@@ -51,6 +51,10 @@ export default {
     mergeLocale: {
       type: Boolean,
       default: true
+    },
+    defaultPeriod: {
+      type: String,
+      default: undefined
     }
   },
   emits: ['update:model-value', 'error'],
@@ -60,10 +64,12 @@ export default {
       selected[field.id] = []
     }
 
+    const selectedPeriod =  this.defaultPeriod ? this.periods.findIndex(p => p.id === this.defaultPeriod) : this.periods[this.periods.length - 1]
+
     return {
       selected,
       error: '',
-      selectedPeriod: this.periods[this.periods.length - 1]
+      selectedPeriod
     }
   },
 
